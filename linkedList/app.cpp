@@ -20,16 +20,15 @@ class LinkedList{
       int count;
 
       LinkedList(){
-        head->next = NULL;
+        head = NULL;
         count = 0;
       }
 
       // insert at the start of the linked list
       void insertHead(int value){
         Node *newNode = new Node(value);
-        newNode->next = head->next;
-        head->next = newNode;
-
+        newNode->next = head;
+        head = newNode;
         count++;
       }
 
@@ -61,7 +60,7 @@ class LinkedList{
           
         Node* current = head;
 
-        for(int i = 0 ; i < pos ; i++){
+        for(int i = 0 ; i < pos - 1 ; i++){
           current = current->next;
         }
         
@@ -118,7 +117,7 @@ class LinkedList{
 
       // reverse the linked list
       void reverse(){
-        Node *current = head->next;
+        Node *current = head;
         Node *prev = NULL;
         Node *next;
         
@@ -129,13 +128,13 @@ class LinkedList{
           current = next;
         }
         // set head to end of the linked list
-        head->next = prev;
+        head = prev;
       }
      
       // Reverse Linked List in recursive algo
       void recursiveReverse(Node *node){
           if(node->next == NULL){
-            head->next = node;
+            head = node;
             return;
           }
 
@@ -147,7 +146,7 @@ class LinkedList{
       }
 
       void describe(){
-        Node *current = head->next;
+        Node *current = head;
 
         while(current != NULL){
           cout<<current->data<<" ";
@@ -166,11 +165,11 @@ int main(){
    a.insertTail(1);
    a.insertTail(2);
    a.insertTail(9);
-   a.insertAt(1 , 25);
+   a.insertAt(3 , 25);
    a.deleteTail();
-   a.deleteTail();
-   a.deleteAt(0);
-   // a.reverse();
-   // a.recursiveReverse(a.head);
+  //  a.deleteTail();
+  //  a.deleteAt(0);
+   a.reverse();
+  //  a.recursiveReverse(a.head);
    a.describe();
 }
