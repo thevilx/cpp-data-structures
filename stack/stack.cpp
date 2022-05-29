@@ -7,7 +7,8 @@ using namespace std;
 class Stack{
     public:
         int *arr;
-        int top;  
+        int top;
+          
         Stack(int n = MAX_STACK_SIZE){
             arr = new int[n];
             top = -1;

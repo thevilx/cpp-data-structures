@@ -19,15 +19,13 @@ bool sameType(char peak , char ch){
   switch(peak){
     case '{':
         return (ch == '}');
-      break;
-    
+
     case '[':
         return (ch == ']');
-      break;
-    
+
     case '(':
         return (ch == ')');
-      break;
+
   }
 
   return false;

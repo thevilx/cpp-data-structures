@@ -20,6 +20,7 @@ class node{
 class bt{
   public:
     node* root;
+    // node* nodadd;
 
     bt(){
       root = NULL;
@@ -45,7 +46,42 @@ class bt{
         }
 
         return nod;
+    }
 
+    void add(int val){
+        root = Insert(root , val);
+    }
+
+    int findMin(){
+      
+      if(root == NULL){
+        cout<<"Tree Is Empty!"<<endl;
+        return -1;
+      }
+
+      node* current = root;
+      
+      while(current->left != NULL){
+        current = current->left;
+      }
+
+      return current->data;
+    }
+
+    int findMax(){
+      
+      if(root == NULL){
+        cout<<"Tree Is Empty!"<<endl;
+        return -1;
+      }
+
+      node* current = root;
+      
+      while(current->right != NULL){
+        current = current->right;
+      }
+
+      return current->data;
     }
    
     void describe(node* node){
@@ -74,23 +110,25 @@ class bt{
 
 int main(){
   bt btz;
-  node* node;
-  node = btz.Insert(node , 15);
-  node = btz.Insert(node , 10);
-  node = btz.Insert(node , 20);
-  node = btz.Insert(node , 25);
-  node = btz.Insert(node , 8);
-  node = btz.Insert(node , 12);
-   btz.describe(btz.root);
 
-  if(btz.search(btz.root , 200)){
-    cout<<"Found that shit"<<endl;
+  btz.add(15);
+  btz.add(10);
+  btz.add(20);
+  btz.add(25);
+  btz.add(8);
+  btz.add(12);
+
+  btz.describe(btz.root);
+
+  cout<<"Min = "<<btz.findMin()<<endl;
+  cout<<"Max = "<<btz.findMax()<<endl;
+  
+  if(btz.search(btz.root , 20)){
+    cout<<"Number Found !"<<endl;
   }
+
   else{
-    cout<<"No bitch number found !"<<endl;
+    cout<<"No Number Found !"<<endl;
   }
-  //btz.describe(btz.root);
-  //btz.Insert(25);
-  //btz.Insert(8);
-  //btz.Insert(12);
+
 }
