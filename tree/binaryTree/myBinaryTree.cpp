@@ -20,12 +20,13 @@ class node{
 class bt{
   public:
     node* root;
-    // node* nodadd;
 
+  // empty tree in constructor 
     bt(){
       root = NULL;
     }
 
+  // create a node with givin value and insert it to the tree in recursion way
     node* Insert(node* nod , int val){
         
         if(root == NULL){
@@ -48,10 +49,12 @@ class bt{
         return nod;
     }
 
+  // add is a function for inserting to tree without requrment to use root outside of the class
     void add(int val){
         root = Insert(root , val);
     }
 
+    // min is the value of the leftmost node in tree which we can find with recursion
     int findMin(){
       
       if(root == NULL){
@@ -68,6 +71,7 @@ class bt{
       return current->data;
     }
 
+    // max is the value of the rightmost node in tree which we can find with recursion
     int findMax(){
       
       if(root == NULL){
@@ -84,6 +88,7 @@ class bt{
       return current->data;
     }
    
+   // this is a function for showing all elements of tree also in a recursion way
     void describe(node* node){
         
         cout<<"Value :"<<node->data<<endl;
@@ -99,11 +104,21 @@ class bt{
         }
     }
 
+    // this function goes into all elements of tree with recursion
+    // and check if the givin val variable is present in tree or not
     bool search(node* nod , int val){
       if(nod == NULL) return false;
       else if(nod->data == val) return true;
       else if(val <= nod->data) return search(nod->left , val);
       else return search(nod->right , val);
+    }
+
+
+    // this function returns the max number of ways to reach a leaf node which we call height of the tree
+    int getTreeHeight(node* root){
+      if(root == NULL)
+        return -1;
+      return max(getTreeHeight(root->left), getTreeHeight(root->right)) + 1;
     }
 
 };
@@ -131,4 +146,5 @@ int main(){
     cout<<"No Number Found !"<<endl;
   }
 
+  cout<<"Height of root = "<<btz.getTreeHeight(btz.root)<<endl;
 }
