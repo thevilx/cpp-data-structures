@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <cmath>
 using namespace std;
 
 class node{
@@ -112,39 +112,66 @@ class bt{
       else if(val <= nod->data) return search(nod->left , val);
       else return search(nod->right , val);
     }
-
-
+ 
     // this function returns the max number of ways to reach a leaf node which we call height of the tree
-    int getTreeHeight(node* root){
+    int getNodeHeight(node* root){
       if(root == NULL)
         return -1;
-      return max(getTreeHeight(root->left), getTreeHeight(root->right)) + 1;
+      return max(getNodeHeight(root->left), getNodeHeight(root->right)) + 1;
     }
 
+  // returns true if tree is balanced
+    bool isTreeBalanced(){
+      if(root == NULL){
+        return true;
+      }
+
+      int leftHeight = getNodeHeight(root->left);
+      int rightHeight = getNodeHeight(root->right);
+
+      return abs(rightHeight - leftHeight) <= 1;
+    }
 };
 
 int main(){
-  bt btz;
+  bt bt;
 
-  btz.add(15);
-  btz.add(10);
-  btz.add(20);
-  btz.add(25);
-  btz.add(8);
-  btz.add(12);
+//  bt.add(15);
+  // bt.add(10);
+  // bt.add(20);
+  // bt.add(25);
+  // bt.add(8);
+  // bt.add(12);
+  bt.add(1);
+  bt.add(2);
+  bt.add(3);
+  bt.add(4);
+  bt.add(5);
+  bt.add(6);
 
-  btz.describe(btz.root);
 
-  cout<<"Min = "<<btz.findMin()<<endl;
-  cout<<"Max = "<<btz.findMax()<<endl;
+  bt.describe(bt.root);
+
+cout<<endl<<"Tree Info : "<<endl<<endl;
+
+  cout<<"Min = "<<bt.findMin()<<endl;
+  cout<<"Max = "<<bt.findMax()<<endl;
   
-  if(btz.search(btz.root , 20)){
-    cout<<"Number Found !"<<endl;
+  if(bt.search(bt.root , 20)){
+    cout<<"20 Found !"<<endl;
   }
-
   else{
-    cout<<"No Number Found !"<<endl;
+    cout<<"20 not Found !"<<endl;
   }
 
-  cout<<"Height of root = "<<btz.getTreeHeight(btz.root)<<endl;
+  cout<<"Height of root = "<<bt.getNodeHeight(bt.root)<<endl;
+
+  if(bt.isTreeBalanced()){
+    cout<<"Tree is balanced !"<<endl;
+  }
+  else{
+    cout<<"Tree is not balanced"<<endl;
+  }
+
+
 }
